@@ -2,8 +2,12 @@ package rocks.zipcodewilmington;
 
 import org.junit.Assert;
 import org.junit.Test;
+import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
 
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -11,7 +15,41 @@ import java.util.Date;
  */
 public class CatTest {
     // TODO - Create tests for `void setName(String name)`
+
+    @Test
+    public void setNameTest(){
+        //Given
+        Cat cat = new Cat("meower",  new Date("December 17, 1995"), 1);
+        Cat cat2 = new Cat("jimmy", new Date("March 18, 2001"), 2);
+
+        //When
+        cat.setName("eddie");
+        cat2.setName("micky");
+
+        //Then
+        Assert.assertEquals("eddie", cat.getName());
+        Assert.assertEquals("micky", cat2.getName());
+    }
     // TODO - Create tests for `speak`
+
+    @Test
+    public void setBirthDateTest(){
+       //Given
+        Cat cat = new Cat("meower",  new Date("December 17, 1995"), 1);
+        Cat cat2 = new Cat("meower",  new Date("March 18, 2001"), 1);
+
+        //When
+        cat.setBirthDate(new Date("December 17, 1995"));
+        cat2.setBirthDate(new Date("March 18, 2001"));
+
+        //Then
+        Assert.assertEquals(new Date("December 17, 1995"), cat.getBirthDate());
+        Assert.assertEquals(new Date("March 18, 2001"), cat2.getBirthDate());
+
+
+    }
+    //Given
+
     // TODO - Create tests for `setBirthDate(Date birthDate)`
     // TODO - Create tests for `void eat(Food food)`
     // TODO - Create tests for `Integer getId()`
