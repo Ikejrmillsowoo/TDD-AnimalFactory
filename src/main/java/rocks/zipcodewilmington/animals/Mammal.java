@@ -48,6 +48,6 @@ public abstract class Mammal implements Animal {
 
     @Override
     public Integer getId() {
-        return id;
+        return this.id;
     }
 }

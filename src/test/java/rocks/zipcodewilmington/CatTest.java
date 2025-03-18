@@ -4,56 +4,149 @@ import org.junit.Assert;
 import org.junit.Test;
 import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Dog;
 
 import javax.swing.text.DateFormatter;
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
  * @author leon on 4/19/18.
  */
 public class CatTest {
+
     // TODO - Create tests for `void setName(String name)`
 
     @Test
     public void setNameTest(){
         //Given
-        Cat cat = new Cat("meower",  new Date("December 17, 1995"), 1);
-        Cat cat2 = new Cat("jimmy", new Date("March 18, 2001"), 2);
+        String expectedName = "jimmy";
+        Date expectedDob = null;
+        int expectedId = 111;
+
+        Cat cat = new Cat(expectedName, expectedDob, expectedId);
+
 
         //When
-        cat.setName("eddie");
-        cat2.setName("micky");
+        String actualName = cat.getName();
+        Date actualDob = cat.getBirthDate();
+        int actualId = cat.getId();
 
         //Then
-        Assert.assertEquals("eddie", cat.getName());
-        Assert.assertEquals("micky", cat2.getName());
+        Assert.assertEquals(expectedName, actualName);
+        Assert.assertEquals(expectedDob,actualDob);
+        Assert.assertEquals(expectedId,actualId);
     }
     // TODO - Create tests for `speak`
 
     @Test
+    public void testSpeak() {
+        // Given
+        String expectedName = "Kitty";
+        Date expectedDob = new Date(2010, Calendar.MAY, 10);
+        int expectedId = 111;
+        Cat cat = new Cat(expectedName, expectedDob, expectedId);
+        String expected = "meow!";
+
+        // When
+        String actual = cat.speak();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    //TODO - Create tests for `setBirthDate(Date birthDate)`
+
+    @Test
     public void setBirthDateTest(){
        //Given
-        Cat cat = new Cat("meower",  new Date("December 17, 1995"), 1);
-        Cat cat2 = new Cat("meower",  new Date("March 18, 2001"), 1);
+        String expectedName = null;
+        Date expectedDob = new Date(2010, Calendar.MAY,10);
+        int expectedId = 111;
+
+        Cat cat = new Cat(expectedName, expectedDob, expectedId);
+        cat.setBirthDate(expectedDob);
+
 
         //When
-        cat.setBirthDate(new Date("December 17, 1995"));
-        cat2.setBirthDate(new Date("March 18, 2001"));
+        Date actualDob = cat.getBirthDate();
+
 
         //Then
-        Assert.assertEquals(new Date("December 17, 1995"), cat.getBirthDate());
-        Assert.assertEquals(new Date("March 18, 2001"), cat2.getBirthDate());
-
-
+       Assert.assertEquals(expectedDob,actualDob);
     }
     //Given
 
-    // TODO - Create tests for `setBirthDate(Date birthDate)`
+
     // TODO - Create tests for `void eat(Food food)`
+
+    @Test
+    public void testEat(){
+        // Given
+        String expectedName = "Kitty";
+        Date expectedDob = new Date(2010, Calendar.MAY, 10);
+        int expectedId = 111;
+        Cat cat = new Cat(expectedName, expectedDob, expectedId);
+        Food expectedFood = new Food();
+    }
     // TODO - Create tests for `Integer getId()`
+
+    @Test
+    public void getsIsTest(){
+        //Given
+        String expectedName = null;
+        Date expectedDob = new Date(2010, Calendar.MAY,10);
+        Integer expectedId = 111;
+
+        Cat cat = new Cat(expectedName, expectedDob, expectedId);
+
+
+
+        //When
+        Integer actualId = cat.getId();
+
+
+        //Then
+        Assert.assertEquals(expectedId,actualId);
+    }
     // TODO - Create test to check Animal inheritance; google search `java instanceof keyword`
+
+    @Test
+    public void animalInstanceTest() {
+        //Given
+        Animal animal = new Animal() {
+           // public void testDogIsAnimal() {
+                String expectedName = "Kitty";
+                Date expectedDob = new Date(2010, Calendar.MAY, 10);
+                int expectedId = 111;
+                Animal cat = new Cat(expectedName, expectedDob, expectedId) {
+                };
+
+            @Override
+            public String speak() {
+                return "";
+            }
+
+            @Override
+            public Integer getNumberOfMealsEaten() {
+                return 0;
+            }
+
+            @Override
+            public Integer getId() {
+                return 0;
+            }
+
+            @Override
+            public void eat(Food food) {
+
+            }
+
+        };
+
+    }
     // TODO - Create test to check Mammal inheritance; google search `java instanceof keyword`
 
 
