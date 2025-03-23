@@ -8,6 +8,9 @@ import rocks.zipcodewilmington.animals.Dog;
 public class DogHouse {
     private static AnimalWarehouse<Dog> dogHouse = new AnimalWarehouse<>();
 
+    public DogHouse() {
+    }
+
     public static void add(Dog dog) {
         dogHouse.add(dog);
     }
